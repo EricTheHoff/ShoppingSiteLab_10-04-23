@@ -103,6 +103,15 @@ app.post('/process-login', (req, res) => {
   res.render('login.html.njk', { error: 'That username or password is incorrect. Please try again.' })
 })
 
+app.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.log(err);
+    }
+    res.redirect('/all-animals');
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}...`);
 });
